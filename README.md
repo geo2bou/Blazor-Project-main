@@ -40,3 +40,40 @@ Extra (nice to have)
 
 Optional
 - Blazor UI framework
+
+## How to Run the Project
+
+Follow the steps below to clone, configure, and run the application locally.
+
+1. Clone the Repository
+
+Use the GitHub CLI:
+```
+gh repo clone geo2bou/Blazor-Project-main
+```
+Or with git:
+```
+git clone https://github.com/geo2bou/Blazor-Project-main.git
+```
+2. Navigate into the Project Directory
+```
+cd Blazor-Project-main
+```
+3. Apply Entity Framework Migrations and Create the Database
+
+Run the following commands to apply the initial migration and update the database:
+```
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+Note: Make sure you have the Entity Framework CLI tools installed.
+If not, you can install them with:
+```
+dotnet tool install --global dotnet-ef
+```
+4. Run the Application
+
+Start the application with:
+```
+dotnet run
+```
