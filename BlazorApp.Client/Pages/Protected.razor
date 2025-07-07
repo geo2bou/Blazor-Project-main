@@ -1,0 +1,26 @@
+@page "/protected"
+@attribute [Authorize]
+
+<h3>Protected Page</h3>
+
+<p>Only logged in users can view this page.</p>
+
+<AuthorizeView>
+    <Authorized Context="authContext">
+        <p>Welcome, @(authContext.User.FindFirst("name")?.Value ?? authContext.User.FindFirst("sub")?.Value ?? "anonymous")!</p>
+        @* <a class="btn btn-sm btn-danger" href="authentication/logout">Logout</a> *@
+        <a class="btn btn-sm btn-danger" href="https://demo.duendesoftware.com/connect/endsession?post_logout_redirect_uri=http://localhost:5217/">Logout</a>
+        
+        <h4>Your claims:</h4>
+        <ul>
+            @foreach (var claim in authContext.User.Claims)
+            {
+                <li>@claim.Type: @claim.Value</li>
+            }
+        </ul>
+    </Authorized>
+    <NotAuthorized>
+        <p>You are not logged in.</p>
+        <a class="btn btn-sm btn-primary" href="authentication/login">Login</a>
+    </NotAuthorized>
+</AuthorizeView>
